@@ -3,7 +3,7 @@ import React from 'react';
 import * as d3 from 'd3';
 import data from './data_files/food_insecurity_bubble_data.csv';
 
-export class BubbleChart {
+export class BubbleHelp {
     constructor(svg, width, height, type="cari") {
         // set the dimensions and margins of the graph
         this.width = width
@@ -191,38 +191,24 @@ export class BubbleChart {
     }
 
 }
-function BarChart() {
+function BubbleChart() {
     const ref = useD3(
         (svg) => {
             var plot_data = [];
-            // d3.csv("./data_files/food_insecurity_bubble_data.csv", function (data) {
-            //         for (var i = 0; i < data.length; i++) {
-            //             plot_data.push({"size": 100, "group": Math.round(data[i].cari)})
-            //         }
-            //         console.log(plot_data)
-            //         // document.getElementById("bubble-graph").innerHTML = "";
-            //         // var svg = d3.select("svg");
-            //         // svg.selectAll("*").remove();
-            //
-            //         // let box = document.querySelector('.bubble-box');
-            //
-            //         // let width = 1000;
-            //         // let height = 500;
-            //         // let BC = new BubbleChart(svg, width, height, "cari")
-            //         // BC.initialize_nodes(plot_data)
-            //     }
-            // );
 
             d3.csv(data, function(data) {
                 plot_data.push({"size": 100, "group": Math.round(data.cari)})
             }).then(function (){
+                // var svgt = d3.select("svg");
+                svg.selectAll("*").remove();
                 console.log(plot_data);
                 let width = 1000;
                 let height = 500;
-                let BC = new BubbleChart(svg, width, height, "cari")
+                let BC = new BubbleHelp(svg, width, height, "cari")
                 BC.initialize_nodes(plot_data)
             });
-        }
+        },
+        [1]
     );
 
     return (
@@ -243,4 +229,4 @@ function BarChart() {
 }
 
 
-export default BarChart;
+export default BubbleChart;

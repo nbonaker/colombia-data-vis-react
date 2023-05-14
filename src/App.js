@@ -1,12 +1,12 @@
 import React from 'react';
-import BarChart from './BarChart';
+import BubbleChart from './BubbleChart';
 import './App.css';
 
 function App() {
   return (
       <div className="App">
         <header className="App-header">
-          <BarChart />
+          <BubbleChart />
         </header>
       </div>
   );
